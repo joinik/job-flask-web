@@ -44,7 +44,7 @@ $ pip3 install -r requirements.txt
 
 #### 2. 修改配置文件
 
-根据自己情况，修改 `job_web/config.py`
+根据自己情况，修改 `config.ini`
 
 主要是 `SQLALCHEMY_DATABASE_URI` 数据库的链接
 
