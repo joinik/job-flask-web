@@ -1,5 +1,5 @@
-## 声明此项目， fork于 yifanzheng.github.io
-## 但是 完全 是本人 自己从头到尾，重新写的一份，
+### 声明此项目， fork于 yifanzheng.github.io
+### 但是 完全 是本人 自己从头到尾，重新写的一份，
 # 简单的招聘网站demo
 基于 Flask / Jinja2 / Bootstrap / MySQL 开发，仿照拉勾网的风格，实现了招聘网站的必需功能
 
