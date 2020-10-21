@@ -85,14 +85,14 @@ def upgrade():
     sa.Column('user_id', sa.BigInteger(), nullable=True),
     sa.Column('company_id', sa.Integer(), nullable=True),
     sa.Column('resume', sa.String(length=128), nullable=True),
-    sa.Column('status', sa.SmallInteger(), nullable=True),
+    sa.Column('static', sa.SmallInteger(), nullable=True),
     sa.Column('company_response', sa.String(length=256), nullable=True),
     sa.ForeignKeyConstraint(['company_id'], ['company.id'], ondelete='SET NULL'),
     sa.ForeignKeyConstraint(['job_id'], ['job.id'], ondelete='SET NULL'),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ondelete='SET NULL'),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_index(op.f('ix_delivery_status'), 'delivery', ['status'], unique=False)
+    op.create_index(op.f('ix_delivery_status'), 'delivery', ['static'], unique=False)
     # ### end Alembic commands ###
 
 

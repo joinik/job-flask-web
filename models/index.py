@@ -28,6 +28,7 @@ class UserBase (Base, UserMixin):
 	# 用户的基类
 	__abstract__ = True
 
+	# 角色 的值 判断是， 用户，还是，企业， 管理员
 	ROLE_USER = 10
 	ROLE_COMPANY = 20
 	ROLE_ADMIN = 30

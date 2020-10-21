@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from faker import Faker
-from job_web.models import db, User, Company, Job
+from models.index import db, User, Company, Job
 import random
-from job_web.forms import EXP, EDUCATION, FINANCE_STAGE, FIELD
+from forms import EXP, EDUCATION, FINANCE_STAGE, FIELD
 import time
 
 fake = Faker('zh_CN')
@@ -18,8 +18,8 @@ class FakerData(object):
             c = User()
             c.id = int(time.time() * 100000000)
             c.name = fake.word()
-            # c.email = fake_en.email()
-            c.email = fake.email()
+            c.email = fake_en.email()
+            # c.email = fake.email()
 
             print("----1----")
             print(c.email)
@@ -30,8 +30,8 @@ class FakerData(object):
 
             d = Company()
             d.name = fake.word() + fake.word() + fake.word() + fake.word()
-            # d.email = fake_en.email()
-            d.email = fake.email()
+            d.email = fake_en.email()
+            # d.email = fake.email()
             # d.phone = random.randint(13900000000, 13999999999)
             d.password = '123456'
             d.logo = 'https://www.zhipin.com/v2/chat_v2/images/v2/defaultlogov2.jpg'
@@ -65,3 +65,5 @@ def run():
     f = FakerData()
     f.fake_user()
     f.fake_job()
+
+
