@@ -79,7 +79,7 @@ ul.item_con_list {
 .container {
     width: 1024px;
     margin: 0 auto;
-    padding-bottom: 0
+    padding-bottom: 3px;
 }
 
 .name {

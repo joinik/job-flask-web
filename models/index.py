@@ -34,7 +34,7 @@ class UserBase (Base, UserMixin):
 	ROLE_ADMIN = 30
 
 	email = db.Column (db.String (64), unique=True, nullable=False)
-	# phone = db.Column(db.Integer, unique=True, index=True, nullable=False)
+	phone = db.Column(db.String (11), unique=True, index=True, nullable=False)
 	_password = db.Column ('password', db.String (128), nullable=False)
 	is_enable = db.Column (db.Boolean, default=True, index=True)
 

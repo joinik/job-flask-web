@@ -21,9 +21,9 @@ class FakerData(object):
             c.email = fake_en.email()
             # c.email = fake.email()
 
-            print("----1----")
-            print(c.email)
-            # c.phone = random.randint(13900000000, 13999999999)
+
+            c.phone = str(random.randint(13900000000, 13999999999))
+            print(c.phone)
             c.password = '123456'
             db.session.add(c)
             db.session.commit()
@@ -32,7 +32,7 @@ class FakerData(object):
             d.name = fake.word() + fake.word() + fake.word() + fake.word()
             d.email = fake_en.email()
             # d.email = fake.email()
-            # d.phone = random.randint(13900000000, 13999999999)
+            d.phone = str(random.randint(13900000000, 13999999999))
             d.password = '123456'
             d.logo = 'https://www.zhipin.com/v2/chat_v2/images/v2/defaultlogov2.jpg'
             d.address = fake.word()
