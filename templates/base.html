@@ -64,10 +64,10 @@
                     <input type="text" class="form-control" name="kw" id="kw"
                            value="{{ request.args.get('kw', '') }}" placeholder="搜索">
                     <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                </button>
-                            </span>
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
@@ -76,8 +76,8 @@
 
                     {#                            判断当前用户是否登录#}
                     <li class="{% if active == 'company_register' %}active{% endif %}">
-                        {#                            	<a href="{{ url_for('company.register') }}">企业注册</a>#}
-                        <a href="#">企业注册</a>
+                        <a href="{{ url_for('company.register') }}">企业注册</a>
+
                     </li>
                     <li class="{% if active == 'user_register' %}active{% endif %}">
                         <a href="{{ url_for('user.register') }}">个人注册</a>

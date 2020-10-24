@@ -6,6 +6,7 @@ from flask_moment import Moment
 from flask_script import Manager
 from flask_session import Session
 from flask_share import Share
+from flask_uploads import UploadSet, IMAGES
 
 from models import db
 
@@ -22,6 +23,10 @@ app.register_blueprint (job_blu, url_prefix='/job')
 app.register_blueprint (company_blu, url_prefix='/company')
 app.register_blueprint (user_blu, url_prefix='/user')
 
+
+# 配置 上传 属性
+uploaded_resume = UploadSet('resume', IMAGES)
+uploaded_logo = UploadSet('logo', IMAGES)
 
 # 加载配置信息
 app.config.from_pyfile ("config.ini")

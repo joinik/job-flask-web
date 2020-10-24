@@ -46,8 +46,11 @@ def login():
 		user_data = User.query.filter (User.email==form.email.data).first ()
 		# 1.1 判断 用户是否 存在
 		if not user_data:
-			flash ("登录信息有误， 请重新登录", 'danger')
-			return redirect (url_for ('index.login'))
+			user_data = Company.query.filter (Company.email == form.email.data).first ()
+			if not user_data:
+				flash ("登录信息有误， 请重新登录", 'danger')
+				return redirect (url_for ('index.login'))
+
 		# 1.2 判断 用户 password
 		if not user_data.check_password (form.password.data):
 			flash ('登录信息有误，请重新登录', 'danger')
