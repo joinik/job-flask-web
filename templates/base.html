@@ -98,20 +98,20 @@
                     {#                            判断企业 #}
                     {% if current_user.is_company() %}
                         <li class="{% if active == 'detail' %}active{% endif %}">
-                            {#                                    <a href="{{ url_for('company.detail', company_id=current_user.id)}}">企业主页</a>#}
-                            <a href="#">企业主页</a>
+                            <a href="{{ url_for('company.detail', company_id=current_user.id)}}">企业主页</a>
+
                         </li>
                         <li class="{% if active == 'manage' %}active{% endif %}">
-                            {#                                    <a href="{{ url_for('company.resumes') }}">招聘管理</a>#}
-                            <a href="#">招聘管理</a>
+                            <a href="{{ url_for('company.resumes') }}">招聘管理</a>
+
                         </li>
                     {% endif %}
 
                     {# 判断管理员#}
                     {% if current_user.is_admin() %}
                         <li class="{% if active == 'manage' %}active{% endif %}">
-                            {#                                    <a href="{{ url_for('admin.index') }}">管理后台</a>#}
-                            <a href="#">管理后台</a>
+                            <a href="{{ url_for('admin.index') }}">管理后台</a>
+
                         </li>
                     {% endif %}
                     <li class="dropdown">
