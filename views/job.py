@@ -1,4 +1,5 @@
 from flask import request, current_app, render_template, abort
+from flask_login import current_user
 
 from models.index import Job, EXP
 from . import job_blu

@@ -37,13 +37,11 @@
                     <a href="/">首页<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="{% if active == 'job' %}active{% endif %}">
-                    {#                           <a href="{{ url_for('job.index') }}">职位</a>#}
-                    <a href="#">职位</a>
+                <a href="{{ url_for('job.index') }}">职位</a>
 
                 </li>
                 <li class="{% if active == 'company' %}active{% endif %}">
-                    {#<!--                            <a href="{{ url_for('company.index') }}">企业</a>-->#}
-                    <a href="#">企业</a>
+                 <a href="{{ url_for('company.index') }}">企业</a>
                 </li>
             </ul>
             <form class="navbar-form navbar-left" action="{{ url_for('index.search') }}">
@@ -88,12 +86,12 @@
                     </li>
                 {% else %}
 
-                    {#                            判断是否是用户#}
+                    {#     判断是否是用户#}
                     {% if current_user.is_user() %}
 
                         <li class="{% if active == 'manage' %}active{% endif %}">
-                            {#                                    <a href="{{ url_for('user.resume') }}">信息管理</a>#}
-                            <a href="#">信息管理</a>
+                             <a href="{{ url_for('user.resume') }}">信息管理</a>
+
                         </li>
                     {% endif %}
 
