@@ -173,7 +173,6 @@ class UserResumeForm (FlaskForm):
 			db.session.rollback ()
 
 
-
 class CompanyDetailForm (FlaskForm):
 	"""公司编辑表单"""
 	address = StringField ('办公地址', validators=[Length (0, 128, message='最多128个字符')])
@@ -213,34 +212,34 @@ class LoginForm (FlaskForm):
 	submit = SubmitField ('登录')
 
 
-class JobForm(FlaskForm):
+class JobForm (FlaskForm):
 	""" job 表单"""
-	name = StringField('职位名称', validators=[DataRequired(message='请填写内容'),
-	                                       Length(4,64)])
-	salary_min = IntegerField('最低薪水（单位：千元）', validators=[DataRequired(message='请填写整数')])
-	salary_max = IntegerField('最高薪水（单位：千元）', validators=[DataRequired(message='请填写整数')])
-	city = StringField('工作城市', validators=[DataRequired(message='请填写内容'),
-	                                                    Length(0,16,message='最多16个字符')])
+	name = StringField ('职位名称', validators=[DataRequired (message='请填写内容'),
+	                                        Length (4, 64)])
+	salary_min = IntegerField ('最低薪水（单位：千元）', validators=[DataRequired (message='请填写整数')])
+	salary_max = IntegerField ('最高薪水（单位：千元）', validators=[DataRequired (message='请填写整数')])
+	city = StringField ('工作城市', validators=[DataRequired (message='请填写内容'),
+	                                        Length (0, 16, message='最多16个字符')])
 
-	tags = StringField('职位标签（用逗号区隔）', validators=[Length(0,64)])
-	exp =  SelectField('工作年限', choices=[(i,i) for i in EXP])
-	education = SelectField('学历要求', choices=[(i, i) for i in EDUCATION])
-	treatment = CKEditorField('职位待遇', validators=[Length(0, 256, message='最多256个字符')])
-	description = CKEditorField('职位描述', validators=[DataRequired(message='填写内容')])
-	is_enable = SelectField('发布', choices=[(True, '立即发廊'), (False, '暂不发布')], coerce=bool)
-	submit = SubmitField('提交')
+	tags = StringField ('职位标签（用逗号区隔）', validators=[Length (0, 64)])
+	exp = SelectField ('工作年限', choices=[(i, i) for i in EXP])
+	education = SelectField ('学历要求', choices=[(i, i) for i in EDUCATION])
+	treatment = CKEditorField ('职位待遇', validators=[Length (0, 256, message='最多256个字符')])
+	description = CKEditorField ('职位描述', validators=[DataRequired (message='填写内容')])
+	is_enable = SelectField ('发布', choices=[(True, '立即发廊'), (False, '暂不发布')], coerce=bool)
+	submit = SubmitField ('提交')
 
 	def validate_salary_min(self, field):
-		if field.data <= 0 or field.data >100:
-			raise ValidationError('须填写0~100之间的整数')
+		if field.data <= 0 or field.data > 100:
+			raise ValidationError ('须填写0~100之间的整数')
 		if self.salary_max.data and field.data <= self.salary_max.data:
-			raise ValidationError('需要小于最高薪资')
+			raise ValidationError ('需要小于最高薪资')
 
 	def validate_salary_max(self, field):
-		if field.data <= 0 or field.data >100:
-			raise ValidationError('须填写0~100之间的整数')
+		if field.data <= 0 or field.data > 100:
+			raise ValidationError ('须填写0~100之间的整数')
 		if self.salary_min.data and field.data <= self.salary_min.data:
-			raise ValidationError('需要大于最低薪资')
+			raise ValidationError ('需要大于最低薪资')
 
 	def create_job(self, company_id):
 		job = Job ()
@@ -262,3 +261,26 @@ def random_name():
 	print (key)
 	h = hmac.new (key.encode ('utf-8'), digestmod='MD5')
 	return h.hexdigest () + '.'
+
+
+from functools import wraps
+from flask import abort
+from flask_login import current_user
+from models.index import User
+
+
+def role_required(role):
+	def decorator(func):
+		@wraps (func)
+		def wrapper(*args, **kwargs):
+			if not current_user.is_authenticated or current_user.role < role:
+				abort (404)
+			return func (*args, **kwargs)
+
+		return wrapper
+
+	return decorator
+
+
+company_required = role_required (User.ROLE_COMPANY)
+admin_required = role_required (User.ROLE_ADMIN)
