@@ -7,7 +7,7 @@ from flask_script import Manager
 from flask_session import Session
 from flask_share import Share
 from flask_uploads import UploadSet, IMAGES
-
+from utils.common import show_companys_status_name
 from models import db
 
 # 1. 创建App对象
@@ -54,7 +54,7 @@ def user_loader(id):
 	elif Company.query.get (id):
 		return Company.query.get (id)
 
-
+app.add_template_filter(show_companys_status_name)
 login_manager.login_view = 'index.login'
 
 # 基于jinja2模板创建社交共享组件
@@ -67,6 +67,8 @@ manager = Manager (app)
 migrate = Migrate (app, db)
 # 添加db 命令
 manager.add_command ('db', MigrateCommand)
+
+
 
 if __name__ == '__main__':
 	manager.run ()

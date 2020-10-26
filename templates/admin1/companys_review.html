@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jobFlask后台管理</title>
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/admin/css/main.css">
+	<link rel="stylesheet" href="/static/admin/css/jquery.pagination.css">
+	<script type="text/javascript" src="/static/admin/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/admin/js/jquery.pagination.min.js"></script>
+</head>
+<body>
+	<div class="breadcrub">
+			当前位置：公司管理>公司审核
+			<form class="news_filter_form">
+				<input type="text" placeholder="请输入关键字" class="input_txt">
+				<input type="submit" value="搜 索" class="input_sub">
+			</form>
+		</div>
+		<div class="pannel">
+			<table class="common_table">
+				<tr>
+					<th width="3%">id</th>
+					<th width="70%">公司名称</th>
+					<th width="15%">发布时间</th>
+					<th width="5%">状态</th>
+					<th width="8%">管理操作</th>
+				</tr>
+                {% for companys in paginate.items %}
+				<tr>
+					<td>{{ companys.id }}</td>
+					<td class="tleft">{{ companys.name }}</td>
+					<td>{{ companys.created_at }}</td>
+					<td>{{ companys.is_enable | show_companys_status_name }}</td>
+					<td>
+						<a href="companys_review_detail.html?id={{ companys.id }}" class="review">审核</a>
+					</td>
+				</tr>
+                {% endfor %}
+
+			</table>
+		</div>
+
+		<div class="box">
+			<div id="pagination" class="page"></div>
+		</div>
+
+        <script>
+			$(function() {
+				$("#pagination").pagination({
+					currentPage: {{ paginate.page }},
+					totalPage: {{ paginate.pages }},
+					callback: function(current) {
+					    window.location.href = "?page=" + current
+					}
+				});
+			});
+		</script>
+
+	
+</body>
+</html>

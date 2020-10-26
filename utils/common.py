@@ -29,3 +29,10 @@ def set_before_request_handle_fuc(app):
 				return redirect (url_for ('admin_blu.login'))
 
 
+
+
+def show_companys_status_name(status):
+	if status == 1:
+		return '已通过'
+	elif status == 0:
+		return '未通过'
