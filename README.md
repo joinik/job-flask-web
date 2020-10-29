@@ -99,7 +99,7 @@ $ python manage.py db upgrade
 
 #### 6. 项目运行截图
 
-1. index 首页 ![index 页面](README.assets/1603940359113.png)
+1. index 首页![index 页面](README.assets/1603940359113.png)
 
 2. 工作详情页 ![1603941112976](README.assets/1603941112976.png)
 

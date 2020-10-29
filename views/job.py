@@ -11,19 +11,26 @@ from . import job_blu
 def index():
 	page = request.args.get ('page', default=1, type=int)
 	kw = request.args.get ('kw')
+
 	flt = {Job.is_enable is True}
+	print(flt, '到家了范德萨')
 	if kw is not None and kw != '':
-		flt.update ({Job.name.like ('%{}%'.format (kw))})
-	pagination = Job.query.filter (*flt).order_by (
+		# flt.update ({Job.name.like ('%{}%'.format (kw))})
+		# print(flt, 'sds')
+		kw = '%{}%'.format (kw)
+
+	# pagination = Job.query.filter (*flt).order_by (
+	pagination = Job.query.filter (Job.is_enable == True, Job.name.like(kw)).order_by (
 		Job.created_at.desc ()).paginate (
 		page=page,
 		per_page=current_app.config['JOB_INDEX_PER_PAGE'],
 		error_out=False
 	)
-	if not pagination:
+	if  pagination.items == []:
 		return redirect (url_for ('index.index'))
-	print ("------/ job---index---")
 
+	print(pagination.items, '数据条目')
+	print ("------/ job---index---")
 	return render_template ('job/index.html', pagination=pagination,
 	                        kw=kw, filter=EXP, active='job')
 

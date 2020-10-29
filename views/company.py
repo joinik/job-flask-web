@@ -25,8 +25,10 @@ def index():
     kw = request.args.get('kw')
     flt = {Company.is_enable is True}
     if kw is not None and kw != '':
-        flt.update({Company.name.ilike('%{}%'.format(kw))})
-    pagination = Company.query.filter(*flt).order_by(Company.updated_at.desc()).paginate(
+        # flt.update({Company.name.ilike('%{}%'.format(kw))})
+        kw = '%{}%'.format(kw)
+    # pagination = Company.query.filter(*flt).order_by(Company.updated_at.desc()).paginate(
+    pagination = Company.query.filter(Company.is_enable==True, Company.name.like(kw)).order_by(Company.updated_at.desc()).paginate(
         page=page, per_page=current_app.config['COMPANY_INDEX_PER_PAGE'], error_out=False)
     return render_template('company/index.html', pagination=pagination, kw=kw, active='company')
 
