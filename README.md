@@ -100,11 +100,16 @@ $ python manage.py db upgrade
 #### 6. 项目运行截图
 
 1. index 首页 ![index 页面](README.assets/1603940359113.png)
+
 2. 工作详情页 ![1603941112976](README.assets/1603941112976.png)
 
 3. 个人用户主页![1603941908147](README.assets/1603941908147.png)
-4. 管理员 后台![1603942106265](README.assets/1603942106265.png)
-5. 工作审核![1603942199705](README.assets/1603942199705.png)
+
+4.  企业用户 ![1603966216621](README.assets/1603966216621.png)
+
+5. 管理员 后台![1603942106265](README.assets/1603942106265.png)
+
+6. 工作审核![1603942199705](README.assets/1603942199705.png)
 
 
 

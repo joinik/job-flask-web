@@ -67,11 +67,18 @@ def apply(job_id):
 @company_required
 def create():
 	form = JobForm ()
+
+	print(form.validate_on_submit(),'---------------1------------')
+
 	if form.validate_on_submit ():
 		company_id = current_user.id
+		print ('职位视图 调用--------')
+
 		form.create_job (company_id)
 		flash ('职位创建成功', 'success')
 		return redirect_job_index ()
+
+	print(' 职位视图结束-------')
 	return render_template ('job/create.html', form=form, active='manage', panel='create')
 
 

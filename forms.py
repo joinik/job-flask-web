@@ -224,15 +224,17 @@ class JobForm (FlaskForm):
 	tags = StringField ('职位标签（用逗号区隔）', validators=[Length (0, 64)])
 	exp = SelectField ('工作年限', choices=[(i, i) for i in EXP])
 	education = SelectField ('学历要求', choices=[(i, i) for i in EDUCATION])
-	treatment = CKEditorField ('职位待遇', validators=[Length (0, 256, message='最多256个字符')])
+	treatment = CKEditorField ('职位待遇', validators=[DataRequired (message='填写内容'),
+	                                               Length (0, 256, message='最多256个字符')])
 	description = CKEditorField ('职位描述', validators=[DataRequired (message='填写内容')])
 	is_enable = SelectField ('发布', choices=[(True, '立即发廊'), (False, '暂不发布')], coerce=bool)
 	submit = SubmitField ('提交')
 
+
 	def validate_salary_min(self, field):
 		if field.data <= 0 or field.data > 100:
 			raise ValidationError ('须填写0~100之间的整数')
-		if self.salary_max.data and field.data <= self.salary_max.data:
+		if self.salary_max.data and field.data >= self.salary_max.data:
 			raise ValidationError ('需要小于最高薪资')
 
 	def validate_salary_max(self, field):
@@ -245,10 +247,10 @@ class JobForm (FlaskForm):
 		job = Job ()
 		self.populate_obj (job)
 		job.company_id = company_id
+		print(' 发布职位成功 -------')
 
 		db.session.add (job)
 		db.session.commit ()
-		print(' 发布职位成功 -------')
 		return job
 
 	def update_job(self, job):
