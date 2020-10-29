@@ -111,5 +111,7 @@ $ python manage.py db upgrade
 
 6. 工作审核![1603942199705](README.assets/1603942199705.png)
 
+7. 求职记录![1603988682603](README.assets/1603988682603.png)
 
+    
 
