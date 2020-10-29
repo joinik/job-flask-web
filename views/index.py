@@ -14,7 +14,6 @@ def index():
 	for c in company_all:
 		# 判断 公司职位
 		if c and c.enabled_jobs ().count () != 0:
-
 			companies.append (c)
 			if len (companies) == 8:
 				break

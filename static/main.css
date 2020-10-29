@@ -138,12 +138,14 @@ a:visited {
 .job-list,
 .company-list {
     margin-top: 16px;
+
 }
 
 .job-box {
     padding: 14px;
     border: solid 1px #ddd;
     border-radius: 5px;
+
     margin-bottom: 16px;
 }
 
@@ -195,6 +197,14 @@ a:visited {
 
 .company-meta {
     color: #999;
+}
+
+
+
+.col-md-4 {
+    /*margin: 1px;*/
+    padding-right: 3px;
+    padding-left: 3px;
 }
 
 .submit_btn {

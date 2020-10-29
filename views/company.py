@@ -2,7 +2,7 @@ from flask import request, render_template, current_app, abort, redirect, url_fo
 from flask_login import current_user
 
 from forms import RegisterCompanyForm, CompanyDetailForm, company_required
-from models.index import Company, Job
+from models.index import Company, Job, Delivery
 from . import company_blu
 
 

@@ -21,7 +21,7 @@ $(function(){
             }
         }
 
-        var news_id = $("#news_id").val();
+        var news_id = $("#companys_id").val();
 
         var params = {
             'action': action,
@@ -30,7 +30,7 @@ $(function(){
 
         // TODO 新闻审核提交
         $.ajax({
-            url: "/admin/news_review_detail/" + news_id,
+            url: "/admin/companys_review_detail/" + news_id,
             type: "post",
             data: JSON.stringify(params),
             contentType: "application/json",

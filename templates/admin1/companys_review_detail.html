@@ -8,36 +8,36 @@
     <link rel="stylesheet" type="text/css" href="/static/admin/css/main.css">
     <script type="text/javascript" src="/static/admin/js/jquery-1.12.4.min.js"></script>
     <script src="/static/admin/tinymce/js/tinymce/tinymce.min.js"></script>
-    <script src="/static/admin/js/news_review_detail.js"></script>
+    <script src="/static/admin/js/company_review_detail.js"></script>
 </head>
 <body>
     <div class="breadcrub">
-            当前位置：公司管理>工作审核
+            当前位置：公司管理>公司审核
         </div>
         <div class="pannel">
             <form class="news_review">
-            <h3 class="review_title">工作审核</h3>
+            <h3 class="review_title">公司审核</h3>
             <div class="form_group">
-                <label>工作标题：</label>
-                <input type="text" class="input_txt2" value="{{ jobs.name }}" readonly>
+                <label>公司标题：</label>
+                <input type="text" class="input_txt2" value="{{ companys.name }}" readonly>
             </div>
             <div class="form_group">
-                    <label>职位标签：</label>
-                    <div class="category_name">{{ jobs.tags }}</div>
+                <label>公司网址：</label>
+                <input type="text" class="input_txt2" value="{{ companys.website | show_company_website }}" readonly>
+
             </div>
             <div class="form_group">
-                <label>工作简介：</label>
-                <textarea class="input_multxt" readonly>{{ jobs.description }}</textarea>
+                <label>公司简介：</label>
+                <textarea class="input_multxt" readonly>{{ companys.description }}</textarea>
             </div>
             <div class="form_group">
-                <label>职位图片：</label>
-                <img src="{{ jobs.index_image_url }}" alt="职位图片" class="index_pic">
-                <img src="#" alt="职位图片" class="index_pic">
+                <label>融资进度：</label>
+                <input class="input_txt2" id="finance_stage" value="{{ companys.finance_stage }}"></input>
             </div>
             <div class="form_group">
-                <label>职位待遇：</label>
+                <label>公司详情：</label>
                 <div class="rich_wrap fl">
-                    <input class="input_area" id="rich_content" value="{{ jobs.treatment }}"></input>
+                    <input class="input_area" id="rich_content" value="{{ companys.details }}"></input>
                 </div>
             </div>
             <div class="form_group indent_group">
@@ -53,7 +53,7 @@
                 <input type="button" value="取消" class="cancel" onclick="cancel()">
             </div>
             <!-- 隐藏字段，用于记录当前新闻id -->
-            <input name="news_id" value="{{ jobs.id }}" hidden>
+            <input id="companys_id" value="{{ companys.id }}" hidden>
             </form>    
         </div>
         

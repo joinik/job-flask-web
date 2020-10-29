@@ -245,8 +245,10 @@ class JobForm (FlaskForm):
 		job = Job ()
 		self.populate_obj (job)
 		job.company_id = company_id
+
 		db.session.add (job)
 		db.session.commit ()
+		print(' 发布职位成功 -------')
 		return job
 
 	def update_job(self, job):

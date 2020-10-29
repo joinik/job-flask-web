@@ -27,13 +27,13 @@
 					<th width="15%">发布时间</th>
 					<th width="10%">管理操作</th>
 				</tr>
-                {% for news in paginate.items %}
+                {% for jobs in paginate.items %}
 				<tr>
-					<td>{{ news.id }}</td>
-					<td class="tleft">{{ news.title }}</td>
-					<td>{{ news.cate_time }}</td>
+					<td>{{ jobs.id }}</td>
+					<td class="tleft">{{ jobs.name }}</td>
+					<td>{{ jobs.created_at }}</td>
 					<td>
-						<a href="news_edit_detail.html?id={{ news.id }}" class="edit">编辑</a>
+						<a href="jobs_edit_detail.html?id={{ jobs.id }}" class="edit">编辑</a>
 					</td>
 				</tr>
                 {% endfor %}
