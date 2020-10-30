@@ -11,28 +11,42 @@ from . import job_blu
 def index():
 	page = request.args.get ('page', default=1, type=int)
 	kw = request.args.get ('kw')
+	print(kw, '----------')
 
 	flt = {Job.is_enable is True}
-	print(flt, '到家了范德萨')
 	if kw is not None and kw != '':
 		# flt.update ({Job.name.like ('%{}%'.format (kw))})
 		# print(flt, 'sds')
 		kw = '%{}%'.format (kw)
 
-	# pagination = Job.query.filter (*flt).order_by (
-	pagination = Job.query.filter (Job.is_enable == True, Job.name.like(kw)).order_by (
-		Job.created_at.desc ()).paginate (
-		page=page,
-		per_page=current_app.config['JOB_INDEX_PER_PAGE'],
-		error_out=False
-	)
-	if  pagination.items == []:
+		try:
+			# pagination = Job.query.filter (*flt).order_by (
+			pagination = Job.query.filter (Job.is_enable == True, Job.name.like(kw)).order_by (
+				Job.created_at.desc ()).paginate (
+				page=page,
+				per_page=current_app.config['JOB_INDEX_PER_PAGE'],
+				error_out=False
+			)
+			print('------2-------')
+		except Exception as e:
+			print("数据没有")
+
+	else:
+		pagination = Job.query.filter (Job.is_enable == True).order_by (
+			Job.created_at.desc ()).paginate (
+			page=page,
+			per_page=current_app.config['JOB_INDEX_PER_PAGE'],
+			error_out=False
+		)
+
+	if not pagination:
+		print('-----1-----')
 		return redirect (url_for ('index.index'))
 
 	print(pagination.items, '数据条目')
 	print ("------/ job---index---")
 	return render_template ('job/index.html', pagination=pagination,
-	                        kw=kw, filter=EXP, active='job')
+                        kw=kw, filter=EXP, active='job')
 
 
 @job_blu.route ("/detail/<int:job_id>")
